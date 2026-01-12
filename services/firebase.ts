@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 export const getFirebase = () => {
@@ -12,8 +12,8 @@ const firebaseConfig = {
   measurementId: "G-Q7488DHT01"
 };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  // Initialize Firebase safely
+  const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
   // Initialize Firestore
   const db = getFirestore(app);
 
